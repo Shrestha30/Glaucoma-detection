@@ -23,24 +23,35 @@ function Home(props) {
   const [gender, setGender] = useState("0");
   const [toastVis,setToastVis] = useState(false);
   const [toastMessage, setToastMeassage] = useState("");
-  const [value, setValue] = useState([1]);
+  
 
   const navigate = useNavigate();
 
-  const [activeButton, setActiveButton] = useState(null);
+  // const [activeButton, setActiveButton] = useState('1');
+  // console.log(activeButton);
 
-  const handleButtonClick = (buttonName) => {
-    setActiveButton(buttonName);
+  // const handleButtonClick = (buttonName) => {
+  //   setActiveButton(buttonName);
+  // };
+  const [stateValue, setStateValue] = useState(1);
+  const handleButtonClick = () => {
+    setStateValue(stateValue === 0 ? 1 : 0);
   };
 
-
-
-
+  // console.log(stateValue);
 
   let navOnclick = e =>{
     setSignSelect(!signSelect);
+    //  console.log(signSelect);
+    if (signSelect=== true) {
+       handleButtonClick(2);
+     }
+     else{
+      handleButtonClick(1);
+     }
     
   }
+ 
  
 
   let loginB = e =>{
@@ -150,8 +161,8 @@ function Home(props) {
           name="radio"
           checked={signSelect}
           onChange={e => {}}
-          style={{ backgroundColor: activeButton === 'button1' ? 'rgb(25, 100, 93)' : '#ffffff00' }}
-          onClick={() => {handleButtonClick('button1'); setSignSelect(true);}}
+          style={{ backgroundColor: stateValue === 1 ? 'rgb(25, 100, 93)' : '#ffffff00' }}
+          onClick={() => {handleButtonClick(1); setSignSelect(true); }}
         >Login</ToggleButton>
 
         <ToggleButton className="btn-outline-custom"      
@@ -160,8 +171,10 @@ function Home(props) {
           name="radio"
           checked={!signSelect}      
           onChange={e => {}}
-          style={{ backgroundColor: activeButton === 'button2' ? 'rgb(25, 100, 93)' : '#ffffff00' }}
-          onClick={() => {handleButtonClick('button2'); setSignSelect(false); }}
+          // backgroundColor: stateValue === 1
+          style={{ backgroundColor: stateValue === 0 ? 'rgb(25, 100, 93)' : '#ffffff00' }}
+          // activeButton === 'button2'
+          onClick={() => {handleButtonClick(2); setSignSelect(false);}}
 
         >Register</ToggleButton>
       </ButtonGroup> 
