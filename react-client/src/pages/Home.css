@@ -12,27 +12,43 @@ body {
     flex-direction: column;
 }
 
-.btn-1{
-    font-family: cursive !important;
-      
-}
-.btn-2{
-    font-family: cursive !important;
-      
-}
+
 
 .btn-home{
     font-family: cursive !important;
      background-color:  rgb(25, 100, 93) !important;  
 }
+.btn-outline-custom {
+    /* background-color: rgb(25, 100, 93) ; */
+     border-color: rgb(25, 100, 93); 
+     font-family: cursive;
+     
+  }
+
+.btn-outline-custom:focus {
+    box-shadow: 0 0 0 0 rgb(25, 100, 93);
+    /* border-color: var(--custom-color-focus); */
+  }
+  
+  /* .btn-outline-custom:active {
+     color: rgb(25, 100, 93) !important; 
+    background-color:  rgb(25, 100, 93) !important;
+    /* border-color: var(--custom-color-active);
+  }   */
+
+.btn-outline-custom:hover {
+    color: white;
+    background-color: rgb(25, 100, 93) !important;
+  }  
 
 .btngrp{
     width: 80%;
     margin-left: auto;
     margin-right: auto;
     padding-top: 20px;
-    /* color: rgb(159, 226, 177); */
-    color: beige !important;
+    color: white; 
+   
+    
 }
 
 

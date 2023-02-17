@@ -20,6 +20,7 @@ function Navbar(props) {
                     <li className='nav-item' onClick={e =>props.onClick(e)}>
                         {props.selectLogin? "Register":"Login"}
                     </li>
+                    
                 </ul>
             </div>
         </nav>

@@ -23,16 +23,25 @@ function Home(props) {
   const [gender, setGender] = useState("0");
   const [toastVis,setToastVis] = useState(false);
   const [toastMessage, setToastMeassage] = useState("");
+  const [value, setValue] = useState([1]);
 
   const navigate = useNavigate();
+
+  const [activeButton, setActiveButton] = useState(null);
+
+  const handleButtonClick = (buttonName) => {
+    setActiveButton(buttonName);
+  };
 
 
 
 
 
   let navOnclick = e =>{
-    setSignSelect(!signSelect)
+    setSignSelect(!signSelect);
+    
   }
+ 
 
   let loginB = e =>{
     e.preventDefault();
@@ -117,8 +126,7 @@ function Home(props) {
   return (
    
     <>
-    {/* <div className="wrapperContainer" style={ { background: 'url("../images/bg1.jpg") no-repeat center center fixed' } }>  */}
-   
+
       <Navbar selectLogin={signSelect} onClick={navOnclick}/>
       <div className='wrap-main'>
       <Toast show={toastVis} onClose={ e => {setToastVis(!toastVis)} }>
@@ -133,26 +141,33 @@ function Home(props) {
         </Toast.Header>
         <Toast.Body>{toastMessage}</Toast.Body>
       </Toast>
-     <ButtonGroup className='btngrp'>
-        <ToggleButton
-        className='btn-1' 
-          type="radio"
-          variant={'outline-success'}  
+
+    
+     <ButtonGroup className='btngrp' >
+        <ToggleButton className="btn-outline-custom"                 
+         type="radio"
+         variant={'outline-custom'}
           name="radio"
           checked={signSelect}
           onChange={e => {}}
-          onClick={ e => setSignSelect(true) }
-        >Sign In</ToggleButton>
-        <ToggleButton
-        className='btn-2'
+          style={{ backgroundColor: activeButton === 'button1' ? 'rgb(25, 100, 93)' : '#ffffff00' }}
+          onClick={() => {handleButtonClick('button1'); setSignSelect(true);}}
+        >Login</ToggleButton>
+
+        <ToggleButton className="btn-outline-custom"      
           type="radio"
-          variant={'outline-success'}
+          variant={'outline-custom'}              
           name="radio"
-          checked={!signSelect}
+          checked={!signSelect}      
           onChange={e => {}}
-          onClick={ e => setSignSelect(false) }
+          style={{ backgroundColor: activeButton === 'button2' ? 'rgb(25, 100, 93)' : '#ffffff00' }}
+          onClick={() => {handleButtonClick('button2'); setSignSelect(false); }}
+
         >Register</ToggleButton>
       </ButtonGroup> 
+
+
+
 
       <Form className={signSelect?"pad wi":"no-display"}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -175,7 +190,7 @@ function Home(props) {
         </Form.Group>
         
         <Button className='btn-home' variant="success" class="btn btn-success btn-lg btn-block"  type="submit" onClick={loginB} size="lg" style={{width:"100%", marginLeft:"auto", marginRight:"auto", marginTop: '5%'}}>
-          Log In
+          Login
         </Button>
        
       </Form>
