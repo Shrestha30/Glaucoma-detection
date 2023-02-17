@@ -15,6 +15,7 @@
 .btn-clinical{
     font-family: cursive !important;
      background-color:  rgb(25, 100, 93) !important;  
+     border-color: rgb(250, 254, 254) !important;
 }
 .no-display{
     display: none;
