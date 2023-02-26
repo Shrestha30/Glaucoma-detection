@@ -277,7 +277,7 @@ function ClinicalDataPrediction(props) {
                 Prediction: {prdmsg}
               </Alert>
                 
-              <Button variant="success" type="submit" onClick={predict} size="lg" style={{width:"100%", marginTop: '5%'}}>
+              <Button className='btn-clinical' variant="success" type="submit" onClick={predict} size="lg" style={{width:"100%", marginTop: '5%'}}>
                 {upldmsg}
               </Button>
 

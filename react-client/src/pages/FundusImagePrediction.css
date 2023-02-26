@@ -45,6 +45,8 @@ input{
     width: fit-content;
     padding-left: 10px;
     padding-right: 10px;
+    padding-top: 3px;
+    font-family: cursive;
 }
 .uploadimage{
     height: 30px;
@@ -54,5 +56,11 @@ input{
     border-radius: 5px;
     margin-left: auto;
     margin-right: auto;
+    border-color: rgb(250, 254, 254) !important;
+}
+.btn-fundus{
+    font-family: cursive !important;
+     background-color:  rgb(25, 100, 93) !important;  
+     border-color: rgb(250, 254, 254)  !important;
 }
 /* end */

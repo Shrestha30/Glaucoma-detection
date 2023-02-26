@@ -9,7 +9,7 @@ function Navbar(props) {
         <nav className='navbar'>
             <div className='navbar-container'>
                 <img src={require('../images/logo71.png')} alt='' className='navbar-Logo'></img>
-                <label className='glaucoma-label'>Glaucoma detection</label>
+                <label className='glaucoma-label'>Glaucoma</label>
                 <div className='menu-icon' onClick = {() => setClick(!click)}>
                     <i className= {click ? 'fas fa-times' : 'fas fa-bars'}></i>
                 </div>
@@ -20,6 +20,7 @@ function Navbar(props) {
                     <li className='nav-item' onClick={e =>props.onClick(e)}>
                         {props.selectLogin? "Register":"Login"}
                     </li>
+                    
                 </ul>
             </div>
         </nav>

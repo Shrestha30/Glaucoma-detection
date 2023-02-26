@@ -5,7 +5,6 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
-// import bg1 from '../images/bg1.jpg'
 import Form from 'react-bootstrap/Form';
 import Toast from 'react-bootstrap/Toast';
 import { useNavigate } from 'react-router-dom';
@@ -24,16 +23,36 @@ function Home(props) {
   const [gender, setGender] = useState("0");
   const [toastVis,setToastVis] = useState(false);
   const [toastMessage, setToastMeassage] = useState("");
+  
 
   const navigate = useNavigate();
 
+  // const [activeButton, setActiveButton] = useState('1');
+  // console.log(activeButton);
 
+  // const handleButtonClick = (buttonName) => {
+  //   setActiveButton(buttonName);
+  // };
+  const [stateValue, setStateValue] = useState(1);
+  const handleButtonClick = () => {
+    setStateValue(stateValue === 0 ? 1 : 0);
+  };
 
-
+  // console.log(stateValue);
 
   let navOnclick = e =>{
-    setSignSelect(!signSelect)
+    setSignSelect(!signSelect);
+    //  console.log(signSelect);
+    if (signSelect=== true) {
+       handleButtonClick(2);
+     }
+     else{
+      handleButtonClick(1);
+     }
+    
   }
+ 
+ 
 
   let loginB = e =>{
     e.preventDefault();
@@ -60,8 +79,8 @@ function Home(props) {
         if(data.error==="none"){
           props.setId(data.id);
           // setToastVis(true);
-          setToastMeassage("SignIn Successful");
-          toast.success("Sign in Successful");
+          setToastMeassage("Login Successful");
+          toast.success("Login Successful");
           
           navigate('/features');
         }else{
@@ -105,7 +124,7 @@ function Home(props) {
         if(data.error==="none"){
           // setToastVis(true);
           // setToastMeassage("User created");
-          toast.info("User created");
+          toast.info("Register Successful!");
         }else{
           // setToastVis(true);
           // setToastMeassage("User Already Registered");
@@ -118,8 +137,7 @@ function Home(props) {
   return (
    
     <>
-    {/* <div className="wrapperContainer" style={ { background: 'url("../images/bg1.jpg") no-repeat center center fixed' } }>  */}
-   
+
       <Navbar selectLogin={signSelect} onClick={navOnclick}/>
       <div className='wrap-main'>
       <Toast show={toastVis} onClose={ e => {setToastVis(!toastVis)} }>
@@ -134,28 +152,39 @@ function Home(props) {
         </Toast.Header>
         <Toast.Body>{toastMessage}</Toast.Body>
       </Toast>
-      <ButtonGroup className='btngrp'>
-        <ToggleButton 
-          type="radio"
-          variant={'outline-success'}
+
+    
+     <ButtonGroup className='btngrp' >
+        <ToggleButton className="btn-outline-custom"                 
+         type="radio"
+         variant={'outline-custom'}
           name="radio"
           checked={signSelect}
           onChange={e => {}}
-          onClick={ e => setSignSelect(true) }
-        >Sign In</ToggleButton>
-        <ToggleButton
+          style={{ backgroundColor: stateValue === 1 ? 'rgb(25, 100, 93)' : '#ffffff00' }}
+          onClick={() => {handleButtonClick(1); setSignSelect(true); }}
+        >Login</ToggleButton>
+
+        <ToggleButton className="btn-outline-custom"      
           type="radio"
-          variant={'outline-success'}
+          variant={'outline-custom'}              
           name="radio"
-          checked={!signSelect}
+          checked={!signSelect}      
           onChange={e => {}}
-          onClick={ e => setSignSelect(false) }
+          // backgroundColor: stateValue === 1
+          style={{ backgroundColor: stateValue === 0 ? 'rgb(25, 100, 93)' : '#ffffff00' }}
+          // activeButton === 'button2'
+          onClick={() => {handleButtonClick(2); setSignSelect(false);}}
+
         >Register</ToggleButton>
-      </ButtonGroup>
+      </ButtonGroup> 
+
+
+
 
       <Form className={signSelect?"pad wi":"no-display"}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label class="font-weight-bold">Email address</Form.Label>
+          <Form.Label className='text-label' class="font-weight-bold">Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter email" isInvalid={vemail} value={email} onChange={e=>setEmail(e.target.value)}/>
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
@@ -173,8 +202,8 @@ function Home(props) {
           </Form.Control.Feedback>
         </Form.Group>
         
-        <Button variant="success" class="btn btn-success btn-lg btn-block"  type="submit" onClick={loginB} size="lg" style={{width:"100%", marginLeft:"auto", marginRight:"auto", marginTop: '5%'}}>
-          Log In
+        <Button className='btn-home' variant="success" class="btn btn-success btn-lg btn-block"  type="submit" onClick={loginB} size="lg" style={{width:"100%", marginLeft:"auto", marginRight:"auto", marginTop: '5%'}}>
+          Login
         </Button>
        
       </Form>
@@ -215,7 +244,7 @@ function Home(props) {
           </Form.Select>
         </Form.Group>
 
-        <Button variant="success" type="submit" onClick={register} size="lg" style={{width:"100%", marginLeft:"auto", marginRight:"auto",  marginTop: '5%'}}>
+        <Button className='btn-home' variant="success" type="submit" onClick={register} size="lg" style={{width:"100%", marginLeft:"auto", marginRight:"auto",  marginTop: '5%'}}>
           Register
         </Button>
       </Form>
