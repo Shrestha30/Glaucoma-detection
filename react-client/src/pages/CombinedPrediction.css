@@ -8,6 +8,11 @@
     width: 100%;
     flex-direction: column;
 }
+.btn-combine{
+    font-family: cursive !important;
+     background-color:  rgb(25, 100, 93) !important;  
+     border-color: rgb(250, 254, 254) !important;
+}
 .header{
     color: rgb(25, 100, 93);
     font-family: cursive;

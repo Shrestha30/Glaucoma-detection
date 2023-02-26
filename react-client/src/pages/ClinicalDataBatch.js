@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import SNavbar from '../components/SNavbar'
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
+import './ClinicalDataBatch.css';
 import { useNavigate } from 'react-router-dom';
 
 function ClinicalDataBatch(props) {
@@ -75,13 +76,13 @@ function ClinicalDataBatch(props) {
       </div>
       <div style={{display:"flex", flexDirection:"column", width:"100%"}}>
       <input id="csvs" type="file" accept=".csv" onChange={(e)=>setFile(e.target.files[0])}></input>
-        <Button variant="success" type="submit" onClick={batchPredict} size="lg" style={{width:"80%", marginTop: '2%', marginLeft:'auto',marginRight:'auto'}}>
+        <Button className='btn-batch' variant="success" type="submit" onClick={batchPredict} size="lg" style={{width:"80%", marginTop: '2%', marginLeft:'auto',marginRight:'auto'}}>
             Process CSV File
         </Button>
         <h2 style={{marginLeft:"auto",marginRight:"auto",visibility:fileNameVis,backgroundColor:'rgba(0, 227, 0, 0.47)',marginTop:"2%"}}>
             {'File Selected: '+fileName}
         </h2>
-        <Button variant="success" type="submit" onClick={download} size="lg" style={{visibility:dwnldBtnVis,width:"80%", marginTop: '2%', marginLeft:'auto',marginRight:'auto'}}>
+        <Button className='btn-batch' variant="success" type="submit" onClick={download} size="lg" style={{visibility:dwnldBtnVis,width:"80%", marginTop: '2%', marginLeft:'auto',marginRight:'auto'}}>
             Download Processed CSV
         </Button>
       </div>

@@ -297,7 +297,7 @@ function CombinedPrediction(props) {
                 Prediction: {prdmsg}
               </Alert>
                 
-              <Button variant="success" type="submit" onClick={predict} size="lg" style={{width:"100%", marginTop: '5%'}}>
+              <Button className='btn-combine' variant="success" type="submit" onClick={predict} size="lg" style={{width:"100%", marginTop: '5%'}}>
                 {upldmsg}
               </Button>
 
