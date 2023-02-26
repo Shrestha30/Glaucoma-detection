@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useEffect} from 'react'
 
 function App() {
 
@@ -28,7 +28,7 @@ function App() {
   }
 
   let meow = (e) => {
-    let url = 'http://localhost:5000/dow';
+    //let url = 'http://localhost:5000/dow';
     const aTag = document.createElement('a');
     aTag.href = 'http://localhost:5000/dow';
     aTag.setAttribute('download','C100P61ThinF_IMG_20150918_144104_cell_165.png');

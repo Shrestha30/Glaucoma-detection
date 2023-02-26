@@ -1,0 +1,10 @@
+.gridDiv{
+    display: flex;
+    flex-direction: "row";
+    margin-top:"2%";
+}
+
+.chart{
+    width: 50%;
+    padding: 2% 2%;
+}

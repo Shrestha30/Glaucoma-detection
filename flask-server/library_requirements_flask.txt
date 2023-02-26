@@ -3,3 +3,7 @@ flask-sqlalchemy
 flask-bcrypt
 python-dotenv
 flask-cors
+pandas
+tensorflow
+numpy
+pillow
