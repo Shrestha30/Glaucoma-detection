@@ -7,6 +7,8 @@ from models import db, User, Image, ClinicalData
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 import numpy as np
+import pickle
+import pandas as pd
 
 app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
@@ -162,6 +164,35 @@ def clinicalpredict():
     vfmd = request.json['vfmd']
     
     prediction='1'#assign prediction function here
+    
+    #prediction code start
+    file='./saved_models/4.sav'
+    fileobj=open(file,'rb')
+    model=pickle.load(fileobj)
+
+    data = {
+        'Age': [float(age)],
+        'Gender': [int(gender)],
+        'dioptre_1': [float(dioptre1)],
+        'dioptre_2': [float(dioptre2)],
+        'astigmatism': [float(astigmatism)],
+        'Phakic/Pseudophakic': [int(phakic)]
+    }
+
+    df = pd.DataFrame(data)
+
+
+
+    prediction_result= model.predict(df)
+    print(prediction_result)
+
+    for val in prediction_result:
+        if val == 1:
+            print("Glaucoma")
+            prediction='1'
+        else:
+            print("Healthy")
+            prediction='0'
     
     if save=='1':
         clinicalDataEntry = ClinicalData.query.filter_by(uid=uid).filter_by(date=date).filter_by(eye=eye).first()

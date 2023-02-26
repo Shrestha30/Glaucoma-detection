@@ -47,7 +47,7 @@ function ClinicalDataPrediction(props) {
       navigate('/');
       return;
     }
-    if(isSave==='0' && date===''){
+    if(isSave==='1' && date===''){
       toast.info('Please set the date');
       setIvDate(true);
       return;
