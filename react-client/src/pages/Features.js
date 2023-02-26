@@ -21,7 +21,7 @@ function Features(props) {
             <Card.Body>
               <Card.Title className='title'>Predict with Fundus Image</Card.Title>
               <Card.Text className='text'>
-              Here you can provide fundus images, and our system will use that data to predict whether you may be at risk for glaucoma. 
+              Here you can provide retinal fundus images, and our system will use that data to predict whether you may be at risk for glaucoma. 
               </Card.Text>
               <Button className='card-btn' variant='outline-success' onClick={e=>{navigate('/fundusImagePrediction')}}>Let's Try !</Button>
             </Card.Body>
@@ -32,9 +32,9 @@ function Features(props) {
           <Card bg='dark' text='white' style={{ width: '18rem',}}>
           <Card.Img variant="top" src={require('../images/clinical-logo.jpg')} style={{minHeight:"10rem"}}/>
             <Card.Body>
-              <Card.Title className='title'>Predict with Clinincal Data</Card.Title>
+              <Card.Title className='title'>Predict with Clinical Data</Card.Title>
               <Card.Text className='text'>
-              Here you can provide   your eye history, and our system will use that data to predict whether you may be at risk for glaucoma.         
+              Here you can provide   your eye history(clinical data), and our system will use that data to predict whether you may be at risk for glaucoma.         
               </Card.Text>
               <Button className='card-btn' variant='outline-success'  onClick={e=>{navigate('/clinicalDataPrediction')}}>Let's Try !</Button>
             </Card.Body>
@@ -45,9 +45,9 @@ function Features(props) {
           <Card bg='dark' text='white' style={{ width: '18rem',}}>
           <Card.Img variant="top" src={require('../images/combine-img.jpg')} style={{minHeight:"10rem"}}/>
             <Card.Body>
-              <Card.Title className='title'>Predict with Combine Data</Card.Title>
+              <Card.Title className='title'>Predict with Combined Data</Card.Title>
               <Card.Text className='text'>
-              Here you can provide fundus image and history, system will use that data to predict whether you may be at risk for glaucoma. 
+              Here you can provide eye history, fundus images and system will use that data to predict whether you may be at risk for glaucoma. 
               </Card.Text>
               <Button className='card-btn' variant='outline-success' onClick={e=>{navigate('/clinicalDataPrediction')}}>Let's Try !</Button>
             </Card.Body>

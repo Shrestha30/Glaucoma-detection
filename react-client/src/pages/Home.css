@@ -1,8 +1,8 @@
-body {
+/* body {
     background-image: url("../images/bg1.jpg");
     background-position: calc(100%);
 
-  } 
+  }  */
 
 
 .wrap-main{
@@ -47,6 +47,7 @@ body {
     margin-right: auto;
     padding-top: 20px;
     color: white; 
+ 
    
     
 }
