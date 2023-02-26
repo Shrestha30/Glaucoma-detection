@@ -79,8 +79,8 @@ function Home(props) {
         if(data.error==="none"){
           props.setId(data.id);
           // setToastVis(true);
-          setToastMeassage("SignIn Successful");
-          toast.success("Sign in Successful");
+          setToastMeassage("Login Successful");
+          toast.success("Login Successful");
           
           navigate('/features');
         }else{
@@ -124,7 +124,7 @@ function Home(props) {
         if(data.error==="none"){
           // setToastVis(true);
           // setToastMeassage("User created");
-          toast.info("User created");
+          toast.info("Register Successful!");
         }else{
           // setToastVis(true);
           // setToastMeassage("User Already Registered");
