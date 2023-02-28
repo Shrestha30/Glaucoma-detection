@@ -202,7 +202,7 @@ def clinicalpredict():
 
     df = pd.DataFrame(data)
 
-    file='./saved_models/4.sav'
+    file='./saved_models/Clinical_model.sav'
     fileobj=open(file,'rb')
     model=pickle.load(fileobj)
 
