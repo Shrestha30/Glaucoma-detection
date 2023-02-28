@@ -168,27 +168,54 @@ def clinicalpredict():
     
     prediction='1'#assign prediction function here
     
-    #prediction code start
-    data = {
-        'Age': [age],
-        'dioptre_1': [dioptre1],
-        'dioptre_2': [dioptre2],
-        'astigmatism': [astigmatism],
-        'Pneumatic': [pneumatic],
-        'Perkins': [perkins],
-        'Pachymetry':[pachymetry],
-        'Axial_Length':[axiallength]
-    }
-    df = pd.DataFrame(data)
-    scaled = loaded_scaler.transform(df)
-    loaded_predict=clinical_loaded_model.predict(scaled)
+    #prediction code start with DL model
+    # data = {
+    #     'Age': [age],
+    #     'dioptre_1': [dioptre1],
+    #     'dioptre_2': [dioptre2],
+    #     'astigmatism': [astigmatism],
+    #     'Pneumatic': [pneumatic],
+    #     'Perkins': [perkins],
+    #     'Pachymetry':[pachymetry],
+    #     'Axial_Length':[axiallength]
+    # }
+    # df = pd.DataFrame(data)
+    # scaled = loaded_scaler.transform(df)
+    # loaded_predict=clinical_loaded_model.predict(scaled)
 
-    if loaded_predict>0.5:
-        print("Glaucoma")
-        prediction='1'
-    else:
-        print("Healthy")
-        prediction='0'
+    # if loaded_predict>0.5:
+    #     print("Glaucoma")
+    #     prediction='1'
+    # else:
+    #     print("Healthy")
+    #     prediction='0'
+    
+    data = {
+        'dioptre_2': [float(dioptre2)],
+        'Phakic/Pseudophakic': [float(phakic)],
+        'Gender': [float(gender)],
+        'Age': [float(age)],
+        'astigmatism': [float(astigmatism)],
+        'dioptre_1': [float(dioptre1)]
+    }
+
+
+    df = pd.DataFrame(data)
+
+    file='./saved_models/4.sav'
+    fileobj=open(file,'rb')
+    model=pickle.load(fileobj)
+
+    prediction_result= model.predict(df)
+    print(prediction_result)
+
+    for val in prediction_result:
+        if val == 1:
+            print("Glaucoma")
+            prediction='1'
+        else:
+            print("Healthy")
+            prediction='0'
     
     if save=='1':
         clinicalDataEntry = ClinicalData.query.filter_by(uid=uid).filter_by(date=date).filter_by(eye=eye).first()
