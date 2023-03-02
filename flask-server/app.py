@@ -9,6 +9,11 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 import pickle
 import pandas as pd
+from PIL import Image
+import os
+from sklearn.decomposition import PCA
+import torch
+import timm
 
 app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
@@ -115,7 +120,7 @@ def upload():
     
     prediction='1'#assign prediction function here
     
-    #start of prediction
+    # #start of prediction
     img_path= filepath
     img=image.load_img(img_path,target_size=(224,224))
     img=image.img_to_array(img)/255
@@ -130,6 +135,86 @@ def upload():
     else:
         print("Parasitized")
         prediction='1'
+
+    ##Imagewise prediction
+#     global_image_location = filepath
+#     global_pca_model_location = './saved_models/glucoma_pca_model_75.pkl'
+#     global_logistic_regression_model_location = './saved_models/glucoma_logistic_regression.pkl'
+#     global_class_label_list = ["Glucoma", "Healthy"]
+#     global_resize_dimension = [224, 224]
+#     global_feature_extractor = timm.create_model('convnext_xlarge_384_in22ft1k', pretrained=True, num_classes=0)
+#     with open(global_pca_model_location, 'rb') as f:
+#         global_pca_model = pickle.load(f)
+#     with open(global_logistic_regression_model_location, 'rb') as f:
+#         global_logistic_regression_model = pickle.load(f)
+
+# #############################
+
+# #############################
+# #############################
+#     def get_numpy_image(image_location_local):
+#       image_object_local = Image.open(image_location_local)
+#       image_object_local = image_object_local.resize((global_resize_dimension[0], global_resize_dimension[1]))
+
+#       image_array_local = np.array(image_object_local)
+
+#       #return image_array_local[np.newaxis, :, :, :]
+#       return image_array_local
+
+
+#     def get_extracted_features(np_array_local):
+#       np_array_local = np_array_local.transpose((2, 0, 1))
+#       np_array_local = np_array_local.astype('float32') / 255.0
+#       input_tensor_local = torch.from_numpy(np_array_local).unsqueeze(0)
+
+#       output_tensor_local = global_feature_extractor(input_tensor_local)
+#       extracted_feature_np_local = output_tensor_local.cpu().detach().numpy()
+
+#       return extracted_feature_np_local
+
+#     def get_pca_reduced_features(extracted_feature_np_local):
+#       return global_pca_model.transform(extracted_feature_np_local)
+
+
+#     def get_predicted_class(pca_reduced_features_local):
+#         predicted_label_int_local = global_logistic_regression_model.predict(pca_reduced_features_local)[0]
+
+#         return global_class_label_list[predicted_label_int_local]
+
+
+#     def predict_glucoma_or_healthy(image_location_local):
+#       print("Step 1 : Reading Image as Numpy")
+#       image_np_array_local = get_numpy_image(image_location_local)
+
+#       print("Step 2 : Extracting Features using Pretrained Convnext")
+#       extracted_features_local = get_extracted_features(image_np_array_local)
+
+#       print("Step 3 : Reducing Feature Space using PCA")
+#       pca_reduced_features_local = get_pca_reduced_features(extracted_features_local)
+
+#       print("Step 4 : Predicting From Processed Feature Space using Logistic Regression")
+#       predicted_class_string_local = get_predicted_class(pca_reduced_features_local)
+
+#       print("Completed!")
+#       print("*****************************")
+#       print("Predicted Sample as : " + predicted_class_string_local)
+
+#       return predicted_class_string_local
+
+# #############################
+# #############################
+#     pred_class, pca_features = predict_glucoma_or_healthy(image_location_local=global_image_location)
+#     print(pred_class)
+
+#     if(pred_class=="Glucoma"):
+#     #     print("Uninfected")
+#         prediction='1'
+#     else:
+#     #     print("Parasitized")
+#         prediction='0'
+
+
+
     
     if request.form.get('save')=='yes':
         imgentry = Image.query.filter_by(uid=uid).filter_by(date=adate).filter_by(eye=eye).first()
@@ -295,11 +380,11 @@ def combinedpredict():
     file.save(filepath)
     
     prediction='1'#assign prediction function here
-<<<<<<< Updated upstream
-=======
 
 
-    #########Combined prediction####################
+
+    #########Combine prediction####################
+
 #     global_image_location = filepath
 #     global_pca_model_location = './saved_models/glucoma_pca_model_75.pkl'
 #     global_logistic_regression_model_location = './saved_models/glucoma_logistic_regression.pkl'
@@ -410,7 +495,7 @@ def combinedpredict():
 
 
 
->>>>>>> Stashed changes
+
     
     if save=='1':
         clinicalDataEntry = ClinicalData.query.filter_by(uid=uid).filter_by(date=date).filter_by(eye=eye).first()

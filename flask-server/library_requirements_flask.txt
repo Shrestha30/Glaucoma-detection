@@ -9,3 +9,5 @@ numpy
 pillow
 sklearn
 scikit-learn
+torch
+timm
