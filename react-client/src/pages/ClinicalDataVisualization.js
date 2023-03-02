@@ -3,10 +3,17 @@ import SNavbar from '../components/SNavbar'
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
 import './ClinicalDataVisualization.css'
+import { Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import BarChart from "../components/BarChart";
 
 function ClinicalDataVisualization(props) {
+
+  const [buttonVisible, setButtonVisible] = useState(true);
+
+  const handleButtonClick = () => {
+    setButtonVisible(false);
+  }
 
   const iniData={
     labels: [],
@@ -207,9 +214,10 @@ function ClinicalDataVisualization(props) {
   return (
     <>
       <SNavbar setId={props.setId}/>
-      <div style={{display:"flex", flexDirection:"column", width:"100%"}}>
-        <Button variant="success" type="submit" onClick={predict} size="lg" style={{width:"80%", marginTop: '2%', marginLeft:'auto',marginRight:'auto'}}>
-            Get Started
+      <h3 className='header'>Visualize Clinical Records</h3>
+      <div style={{display:"flex", flexDirection:"column", width:"50%"}}>
+      <Button className='btn-visual' variant="success" type="submit" onClick={ predict} size="lg" style={{width:"80%", marginTop: '2%', marginLeft:'auto',marginRight:'auto'}}>
+            Get Started!
         </Button>
         <h2 style={{paddingTop:"2%", marginLeft:"auto",marginRight:"auto",visibility:errorVisibility,backgroundColor:warnColor}}>
             No saved data found in the server. Please save a clinical data first.
