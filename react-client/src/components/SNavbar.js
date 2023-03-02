@@ -20,9 +20,9 @@ function SNavbar(props) {
                     <li className='nav-item' onClick={e=>{navigate('/features')}}>
                         Home
                     </li>
-                    <li className='nav-item'>
+                    {/* <li className='nav-item'>
                         Profile
-                    </li>
+                    </li> */}
                     <li className='nav-item' onClick={e=>{props.setId("");navigate('/home');}}>
                         Logout
                     </li>
