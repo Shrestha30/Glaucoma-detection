@@ -382,7 +382,9 @@ def combinedpredict():
     prediction='1'#assign prediction function here
 
 
+
     #########Combine prediction####################
+
 #     global_image_location = filepath
 #     global_pca_model_location = './saved_models/glucoma_pca_model_75.pkl'
 #     global_logistic_regression_model_location = './saved_models/glucoma_logistic_regression.pkl'
@@ -488,6 +490,7 @@ def combinedpredict():
 #         else:
 #           print("Healthy") 
 #           prediction='0' 
+
 
 
 
