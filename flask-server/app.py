@@ -12,8 +12,8 @@ import pandas as pd
 from PIL import Image
 import os
 from sklearn.decomposition import PCA
-import torch
-import timm
+# import torch
+# import timm
 
 app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
@@ -129,6 +129,7 @@ def upload():
     print(y)
 
     a=np.argmax(y, axis=1)
+    print(y[0][a])
     if(a==1):
         print("Uninfected")
         prediction='0'
@@ -491,12 +492,37 @@ def combinedpredict():
 #           print("Healthy") 
 #           prediction='0' 
 
+    img_path= filepath
+    img=image.load_img(img_path,target_size=(224,224))
+    img=image.img_to_array(img)/255
+    img=np.expand_dims(img,axis=0)
+    y=image_loaded_model.predict(img)
 
-
-
-
-
+    a=np.argmax(y, axis=1)
+    image_prediction=y[0][a]
     
+    data = {
+        'Age': [age],
+        'dioptre_1': [dioptre1],
+        'dioptre_2': [dioptre2],
+        'astigmatism': [astigmatism],
+        'Pneumatic': [pneumatic],
+        'Perkins': [perkins],
+        'Pachymetry':[pachymetry],
+        'Axial_Length':[axiallength]
+    }
+    df = pd.DataFrame(data)
+    scaled = loaded_scaler.transform(df)
+    loaded_predict=clinical_loaded_model.predict(scaled)
+
+    for pred in loaded_predict:
+        clinical_pred = pred
+    
+    if (73*image_prediction+90*clinical_pred)/(90+73)>=0.5:
+        prediction = '1'
+    else:
+        prediction = '0'
+
     if save=='1':
         clinicalDataEntry = ClinicalData.query.filter_by(uid=uid).filter_by(date=date).filter_by(eye=eye).first()
         imgentry = Image.query.filter_by(uid=uid).filter_by(date=date).filter_by(eye=eye).first()
@@ -590,6 +616,46 @@ def uploadBatchClinicalData():
         os.remove(filepath)
     
     file.save(filepath)#csv file saved
+    
+    df = pd.read_csv(filepath)
+    df = df.drop('Unnamed: 0',axis=1)
+    
+    # model ishrat
+    # model_file='./saved_models/Clinical_model.sav'
+    # fileobj=open(model_file,'rb')
+    # model=pickle.load(fileobj)
+    
+    # new_df = df[['dioptre_2', 'Phakic/Pseudophakic','Gender','Age','astigmatism','dioptre_1']]
+
+    # prediction_result= model.predict(new_df)
+    # print(prediction_result)
+
+    # predictions=[]
+    # for val in prediction_result:
+    #     if val == 1:
+    #         print("Glaucoma")
+    #         predictions.append('1')
+    #     else:
+    #         print("Healthy")
+    #         predictions.append('0')
+    
+    #DL Model
+    new_df = df[['Age','dioptre_1','dioptre_2','astigmatism',
+              'Pneumatic','Perkins','Pachymetry','Axial_Length']]
+    transformed_df = loaded_scaler.transform(new_df)
+    predicted_probabilities = clinical_loaded_model.predict(transformed_df)
+    
+    predictions=[]
+    for probability in predicted_probabilities:
+        if probability>0.5:
+            predictions.append('1')
+        else:
+            predictions.append('0')
+            
+    prediction_frame= pd.DataFrame({'Predicted_Diagnosis':predictions})
+    
+    result = pd.concat([df,prediction_frame],1)
+    result.to_csv(filepath)
     
     return {'success':'1'}
 
