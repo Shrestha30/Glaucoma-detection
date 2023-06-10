@@ -16,7 +16,7 @@ function Features(props) {
       <SNavbar setId={props.setId}/>
       <div style={{display:'flex',flexDirection:'column'}}>
         <div style={{display:'flex',flexDirection:'row'}}>
-          <div style={{paddingLeft:'30px', paddingRight:'30px',paddingTop:'10px',paddingBottom:'10px', marginTop:'3%', marginLeft:'5%',  borderRadius:'3%'}}>
+          <div style={{paddingLeft:'30px', paddingRight:'30px',paddingTop:'10px',paddingBottom:'10px', marginTop:'3%', marginLeft:'15%',  borderRadius:'3%'}}>
             <Card bg='dark' text='white' style={{ width: '18rem' }}>
             <Card.Img variant="top" src={require('../images/fundus-logo.jpg')} style={{minHeight:"10rem"}}/>
               <Card.Body>
@@ -29,7 +29,7 @@ function Features(props) {
             </Card>
           </div>
 
-          <div style={{paddingLeft:'30px', paddingRight:'30px',paddingTop:'10px',paddingBottom:'10px',marginTop:'3%', marginLeft:'3%'}}>
+          <div style={{paddingLeft:'30px', paddingRight:'30px',paddingTop:'10px',paddingBottom:'10px',marginTop:'3%', marginLeft:'7%'}}>
             <Card bg='dark' text='white' style={{ width: '18rem',}}>
             <Card.Img variant="top" src={require('../images/clinical-logo.jpg')} style={{minHeight:"10rem"}}/>
               <Card.Body>
@@ -43,7 +43,7 @@ function Features(props) {
             </Card>
           </div>
 
-          <div style={{paddingLeft:'30px', paddingRight:'30px',paddingTop:'10px',paddingBottom:'10px',marginTop:'3%', marginLeft:'3%'}}>
+          <div style={{paddingLeft:'30px', paddingRight:'30px',paddingTop:'10px',paddingBottom:'10px',marginTop:'3%', marginLeft:'7%'}}>
             <Card bg='dark' text='white' style={{ width: '18rem',}}>
             <Card.Img variant="top" src={require('../images/combine-img.jpg')} style={{minHeight:"10rem"}}/>
               <Card.Body>
@@ -58,7 +58,7 @@ function Features(props) {
         </div>
         <div style={{display:'flex',flexDirection:'row'}}>
           
-          <div style={{paddingLeft:'30px', paddingRight:'30px',paddingTop:'10px',paddingBottom:'10px',marginTop:'3%', marginLeft:'5%'}}>
+          <div style={{paddingLeft:'30px', paddingRight:'30px',paddingTop:'10px',paddingBottom:'10px',marginTop:'3%', marginLeft:'27%'}}>
             <Card bg='dark' text='white' style={{ width: '18rem',}}>
             <Card.Img variant="top" src={require('../images/bar-graph.jpg')} style={{minHeight:"10rem"}}/>
               <Card.Body>
@@ -71,7 +71,7 @@ function Features(props) {
             </Card>
           </div>
 
-          <div style={{paddingLeft:'30px', paddingRight:'30px',paddingTop:'10px',paddingBottom:'10px',marginTop:'3%', marginLeft:'3%'}}>
+          <div style={{paddingLeft:'30px', paddingRight:'30px',paddingTop:'10px',paddingBottom:'10px',marginTop:'3%', marginLeft:"7%"}}>
             <Card bg='dark' text='white' style={{ width: '18rem',}}>
             <Card.Img variant="top" src={require('../images/stack-prediction.jpg')} style={{minHeight:"10rem"}}/>
               <Card.Body>

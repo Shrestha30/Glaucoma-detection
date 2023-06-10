@@ -161,7 +161,7 @@ function CombinedPrediction(props) {
     <>
         <SNavbar setId={props.setId}/>
         <div className='wrap-main'>
-            <h3 className='header'>Predict Based on Fundus Image</h3>
+            <h3 className='header'>Predict Based on Fundus Image and Clinical Data</h3>
             <Image className='imgpad'
                     src={image ? imageUrl : ImageIcon}
             />
@@ -175,7 +175,7 @@ function CombinedPrediction(props) {
                 </div>
             </Form>
 
-            <h3 className='header' style={{paddingTop:"10px"}}>Clinical Data Entry</h3>
+            {/* <h3 className='header' style={{paddingTop:"10px"}}></h3> */}
             <Form className='pad'>
               
               <Form.Group className="mb-3 pad" controlId="eye" style={{width:"100%"}}>

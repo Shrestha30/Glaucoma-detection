@@ -166,7 +166,7 @@ function ClinicalDataVisualization(props) {
                     leftpachymetry.push(parseFloat(data.pachymetry[i]))
                     leftaxiallength.push(parseFloat(data.axiallength[i]))
                     leftvfmd.push(parseFloat(data.vfmd[i]))
-                    leftprediction.push(parseFloat(data.prediction[i]))
+                    leftprediction.push(parseFloat(data.prediction[i])+1)
                     leftdate.push(data.date[i])
                 }else{
                     rightdioptre2.push(parseFloat(data.dioptre1[i]))
@@ -178,7 +178,7 @@ function ClinicalDataVisualization(props) {
                     rightpachymetry.push(parseFloat(data.pachymetry[i]))
                     rightaxiallength.push(parseFloat(data.axiallength[i]))
                     rightvfmd.push(parseFloat(data.vfmd[i]))
-                    rightprediction.push(parseFloat(data.prediction[i]))
+                    rightprediction.push(parseFloat(data.prediction[i])+1)
                     rightdate.push(data.date[i])
                 }
             }
@@ -191,7 +191,7 @@ function ClinicalDataVisualization(props) {
             setLeftPachymetryData(getGraphData(leftdate,520,560,leftpachymetry));
             setLeftAxiallengthData(getGraphData(leftdate,22,26,leftaxiallength));
             setLeftBVfmdData(getGraphData(leftdate,-2,0,leftvfmd));
-            setLeftPrediction(getPredictionGraphData(leftdate,-0.3,0.3,leftprediction));
+            setLeftPrediction(getPredictionGraphData(leftdate,-0.3,1.3,leftprediction));
 
             setRightDioptre1Data(getGraphData(rightdate,-.25,0.25,rightdioptre1));
             setRightDioptre2Data(getGraphData(rightdate,-.25,0.25,rightdioptre2));
@@ -201,7 +201,7 @@ function ClinicalDataVisualization(props) {
             setRightPachymetryData(getGraphData(rightdate,520,560,rightpachymetry));
             setRightAxiallengthData(getGraphData(rightdate,22,26,rightaxiallength));
             setRightBVfmdData(getGraphData(rightdate,-2,0,rightvfmd));
-            setRightPrediction(getPredictionGraphData(rightdate,-0.3,0.3,rightprediction));
+            setRightPrediction(getPredictionGraphData(rightdate,-0.3,1.3,rightprediction));
 
             setVisibility("");
             setErrrorVisibility("hidden");
