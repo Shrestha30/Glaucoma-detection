@@ -46,11 +46,16 @@ def register_user():
 
     if user_exists:
         return jsonify({"error": "User already exists"}), 409
-
+    
     hashed_password = bcrypt.generate_password_hash(password)
+    
     new_user = User(email=email, password=hashed_password, reg_year=year, age=age, gender=gender)
     db.session.add(new_user)
     db.session.commit()
+    
+    target=os.path.join(UPLOAD_FOLDER,new_user.id)
+    if not os.path.isdir(target):
+        os.mkdir(target)
     
     session["user_id"] = new_user.id
 
@@ -560,6 +565,9 @@ def getAllClinicalData():
     uid = request.json['uid']
     
     clinicalDatas = ClinicalData.query.filter_by(uid=uid)
+    #clinicalDatas = ClinicalData.query.filter_by(uid="34d09fed981949d8a3290bd53bfea81a")
+    # db.session.delete(clinicalDatas)
+    # db.session.commit()
     count = clinicalDatas.count()
     clinicalDataEntries = clinicalDatas.order_by( ClinicalData.date.asc() ).all()
     
