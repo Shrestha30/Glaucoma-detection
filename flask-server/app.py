@@ -9,7 +9,7 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 import pickle
 import pandas as pd
-from PIL import Image
+# from PIL import Image
 import os
 from sklearn.decomposition import PCA
 # import torch
@@ -90,6 +90,7 @@ def login():
 def upload():
     uid=request.form.get('id')
     file = request.files['file']
+    print(file)
     eye=request.form.get('eye')
     filename=file.filename
     target=''
